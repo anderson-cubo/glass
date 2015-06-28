@@ -1,4 +1,8 @@
-#glass
+##Installing glass
+```bash
+$ npm install teaglass -g
+```
+##glass
 Start new project
 ```bash
 $ glass init
@@ -15,7 +19,7 @@ With this file you can set the position of files and set any global variable.
     "name": "", //name of the Site
     "title": "", //title of the site.
     "base": "", //base url from project
-    "positions": [], //set prosition of files which come first and which come at last. 
+    "positions": [], //set prosition of files which come first and which come at last.
     "variables": {} //set xml variables such as <icon> and get the value setted as an variable on the templating system.
 }
 ```
@@ -31,7 +35,7 @@ The `{{position}}` object on template it will be `0` for `index.md` and `1` for 
 ```javascript
  {
  	"variables": {
-    	"h1": "title" 
+    	"h1": "title"
     }
  }
 ```
