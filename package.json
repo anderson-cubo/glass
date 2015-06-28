@@ -1,6 +1,6 @@
 {
   "name": "teaglass",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A small static site builder",
   "main": "app.js",
   "directories": {
@@ -32,7 +32,9 @@
     "url": "https://github.com/mindmeoh/glass/issues"
   },
   "homepage": "https://github.com/mindmeoh/glass#readme",
-
+  "engines": {
+    "node": ">=0.10"
+  },
   "preferGlobal": true,
   "bin": {
     "glass": "app.js"
