@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var markdown = require('marked');
 var nunjucks = require('nunjucks');
 var mkpath = require('mkpath');
