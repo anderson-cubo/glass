@@ -1,6 +1,6 @@
 {
   "name": "teaglass",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A small static site builder",
   "main": "app.js",
   "directories": {
@@ -24,7 +24,10 @@
   "keywords": [
     "sites",
     "static",
-    "small"
+    "small",
+    "generator",
+    "public",
+    "markdown"
   ],
   "author": "mindmeoh",
   "license": "MIT",
@@ -37,6 +40,7 @@
   },
   "preferGlobal": true,
   "bin": {
-    "glass": "app.js"
+    "glass": "app.js",
+    "teaglass": "app.js"
   }
 }

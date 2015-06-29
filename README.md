@@ -23,7 +23,8 @@ With this file you can set the position of files and set any global variable.
     "variables": {} //set xml variables such as <icon> and get the value setted as an variable on the templating system.
 }
 ```
-###Positions example
+
+##Positions example
 ```javascript
  {
  	"positions": ["index.md", "about.md", "how.md"]
@@ -31,7 +32,8 @@ With this file you can set the position of files and set any global variable.
 ```
 The first element rendered it will be `index.md` after that `about.md` and so on...
 The `{{position}}` object on template it will be `0` for `index.md` and `1` for `about.md` and at last `2` for `how.md`.
-###Variables example
+
+##Variables example
 ```javascript
  {
  	"variables": {
@@ -40,6 +42,7 @@ The `{{position}}` object on template it will be `0` for `index.md` and `1` for 
  }
 ```
 The `<h1>` element it will be saved as a variable `{{title}}` on the templating system. Remember the `<h1>` element it will be removed from the markdown file.
+
 ##Templating
 All variables from `default.json` can be accessed by `site` object over the template.
 
