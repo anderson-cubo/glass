@@ -32,7 +32,7 @@ if(process.argv.indexOf('init') != -1) {
 	console.log('Created default.json');
 	return false;
 }
-if(process.argv.indexOf('render') == -1) {
+if(process.argv.indexOf('render') == -1 && process.argv.indexOf('watch') == -1) {
 	return false;
 }
 nunjucks.configure(path.join(_folder, './templates/'), { autoescape: false });
@@ -65,6 +65,11 @@ for(i = 0; i < _l; i++) {
 		newFile.pop();
 		newFile = newFile.join('.').replace(/\\/g,"/");
 		var realFile = newFile+'.md';
+		//Here check if is to render only one file else keep running.
+		var render = true;
+		if(_glassFile.only && _glassFile.only.indexOf(realFile) != -1) {
+			render = false;
+		}
 		newFile += "/";
 		if(newFile.toLowerCase() == '/index/') {
 			newFile = '/index.html';
@@ -73,6 +78,7 @@ for(i = 0; i < _l; i++) {
 		//SAVE AS OBJECT
 		var id = addMdown({
 			file: newFile,
+			render: render,
 			content: markdown( fs.readFileSync(_file).toString() )
 		}, where(_glassFile.positions, realFile));
 		var $ = cheerio.load(_markdown[id-1].content);
@@ -92,18 +98,20 @@ _glassFile.theme = path.join(_folder, _glassFile.theme, 'index.html');
 //START RENDERING THEME.
 for(var i = 0; i < _markdown.length; i++) {
 	var render = _markdown[i];
-	console.log('RENDERING MDOWN FILE', render.file);
-	//GET ALL FILES
-	render.list =  _markdown;
-	render.site = _glassFile;
-	render.position = i;
-	var res = nunjucks.render(_glassFile.theme, render);
-	var _file = path.join(_folder, 'site', (render.file == '/index.html' ? "" : render.file));
-	//CREATE FOLDER
-	if (render.file != '/index.html')
-		mkpath.sync(_file, 0700);
-	//SAVE FILE
-	fs.writeFileSync(path.join(_file, 'index.html'), res, 'utf8');
+	if(render.render) {
+		console.log('RENDERING MDOWN FILE', render.file);
+		//GET ALL FILES
+		render.list =  _markdown;
+		render.site = _glassFile;
+		render.position = i;
+		var res = nunjucks.render(_glassFile.theme, render);
+		var _file = path.join(_folder, 'site', (render.file == '/index.html' ? "" : render.file));
+		//CREATE FOLDER
+		if (render.file != '/index.html')
+			mkpath.sync(_file, 0700);
+		//SAVE FILE
+		fs.writeFileSync(path.join(_file, 'index.html'), res, 'utf8');
+	}
 }
 console.log('DONE');
 process.exit(0);

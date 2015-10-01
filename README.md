@@ -19,6 +19,7 @@ With this file you can set the position of files and set any global variable.
     "name": "", //name of the Site
     "title": "", //title of the site.
     "base": "", //base url from project
+    "only": "" //can be an array or a string only this files will be rendered,
     "positions": [], //set prosition of files which come first and which come at last.
     "variables": {} //set xml variables such as <icon> and get the value setted as an variable on the templating system.
 }
