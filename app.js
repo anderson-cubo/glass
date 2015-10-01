@@ -67,7 +67,7 @@ for(i = 0; i < _l; i++) {
 		var realFile = newFile+'.md';
 		//Here check if is to render only one file else keep running.
 		var render = true;
-		if(_glassFile.only && _glassFile.only.indexOf(realFile) != -1) {
+		if(_glassFile.only && _glassFile.only.indexOf(realFile) == -1) {
 			render = false;
 		}
 		newFile += "/";
