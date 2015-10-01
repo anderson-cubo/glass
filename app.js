@@ -98,7 +98,6 @@ _glassFile.theme = path.join(_folder, _glassFile.theme, 'index.html');
 //START RENDERING THEME.
 for(var i = 0; i < _markdown.length; i++) {
 	var render = _markdown[i];
-	if(render.render) {
 		console.log('RENDERING MDOWN FILE', render.file);
 		//GET ALL FILES
 		render.list =  _markdown;
@@ -106,12 +105,13 @@ for(var i = 0; i < _markdown.length; i++) {
 		render.position = i;
 		var res = nunjucks.render(_glassFile.theme, render);
 		var _file = path.join(_folder, 'site', (render.file == '/index.html' ? "" : render.file));
-		//CREATE FOLDER
-		if (render.file != '/index.html')
-			mkpath.sync(_file, 0700);
-		//SAVE FILE
-		fs.writeFileSync(path.join(_file, 'index.html'), res, 'utf8');
-	}
+		if(render.render) {
+			//CREATE FOLDER
+			if (render.file != '/index.html')
+				mkpath.sync(_file, 0700);
+			//SAVE FILE
+			fs.writeFileSync(path.join(_file, 'index.html'), res, 'utf8');
+		}
 }
 console.log('DONE');
 process.exit(0);

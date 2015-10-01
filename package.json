@@ -1,6 +1,6 @@
 {
   "name": "teaglass",
-  "version": "0.0.51",
+  "version": "0.0.54",
   "description": "A small static site builder",
   "main": "app.js",
   "directories": {
